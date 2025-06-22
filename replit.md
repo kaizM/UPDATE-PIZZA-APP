@@ -132,3 +132,10 @@ The application is configured for multiple deployment scenarios:
 
 Preferred communication style: Simple, everyday language.
 Android development: Planning native Android app to complement web application
+
+## Firebase Configuration
+Project: pizza-8ef42
+- All Firebase credentials permanently saved in secure environment variables
+- Configuration automatically loads on server restart
+- Backup saved to firebase-config.json
+- Ready for production deployment
