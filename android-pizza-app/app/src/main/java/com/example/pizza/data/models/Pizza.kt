@@ -14,9 +14,9 @@ data class Pizza(
 )
 
 data class PizzaSize(
-    val name: String, // "Small", "Medium", "Large"
+    val name: String,
     val price: Double,
-    val diameter: String // "10\"", "12\"", "14\""
+    val diameter: String
 )
 
 data class CartItem(

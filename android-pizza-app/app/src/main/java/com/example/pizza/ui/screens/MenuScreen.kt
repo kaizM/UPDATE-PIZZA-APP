@@ -1,6 +1,5 @@
 package com.example.pizza.ui.screens
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -13,14 +12,11 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
-import com.example.pizza.R
 import com.example.pizza.data.models.Pizza
 import com.example.pizza.data.models.PizzaSize
 import com.example.pizza.viewmodel.MenuState
@@ -141,7 +137,6 @@ fun PizzaCard(
                         .size(80.dp)
                         .clip(RoundedCornerShape(8.dp))
                 ) {
-                    // Using a placeholder color since we don't have actual images
                     Box(
                         modifier = Modifier
                             .fillMaxSize()
