@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pizza Paradise - Mobile App</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header h1 {
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+        
+        .status {
+            background: #27ae60;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-size: 14px;
+        }
+        
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .screen {
+            display: none;
+        }
+        
+        .screen.active {
+            display: block;
+        }
+        
+        .welcome-screen {
+            text-align: center;
+            padding: 40px 20px;
+        }
+        
+        .pizza-icon {
+            font-size: 80px;
+            margin-bottom: 20px;
+        }
+        
+        .btn {
+            width: 100%;
+            padding: 15px;
+            background: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 10px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            background: #c0392b;
+            transform: translateY(-1px);
+        }
+        
+        .btn-secondary {
+            background: #6c757d;
+        }
+        
+        .btn-secondary:hover {
+            background: #5a6268;
+        }
+        
+        .pizza-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 15px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-left: 4px solid #e74c3c;
+        }
+        
+        .pizza-card h3 {
+            color: #e74c3c;
+            margin-bottom: 8px;
+            font-size: 18px;
+        }
+        
+        .pizza-card p {
+            color: #666;
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+        
+        .pizza-price {
+            font-size: 20px;
+            font-weight: bold;
+            color: #27ae60;
+            float: right;
+        }
+        
+        .add-btn {
+            background: #27ae60;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 6px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            float: left;
+        }
+        
+        .add-btn:hover {
+            background: #229954;
+        }
+        
+        .clearfix::after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+        
+        .nav-bar {
+            background: white;
+            padding: 15px;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-around;
+        }
+        
+        .nav-btn {
+            background: none;
+            border: none;
+            padding: 10px;
+            font-size: 12px;
+            color: #666;
+            cursor: pointer;
+            text-align: center;
+            flex: 1;
+        }
+        
+        .nav-btn.active {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        
+        .cart-count {
+            background: #e74c3c;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            font-size: 12px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 5px;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 40px;
+        }
+        
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #e74c3c;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            text-align: center;
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .pizza-card {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🍕 Pizza Paradise</h1>
+        <p>Fresh pizzas delivered fast</p>
+    </div>
+    
+    <div class="status" id="connectionStatus">
+        🚀 Connected to server - Ready to order!
+    </div>
+    
+    <div class="container">
+        <!-- Welcome Screen -->
+        <div class="screen active" id="welcomeScreen">
+            <div class="welcome-screen">
+                <div class="pizza-icon">🍕</div>
+                <h2>Welcome to Pizza Paradise!</h2>
+                <p style="margin: 20px 0; color: #666;">Delicious pizzas made fresh, just for you</p>
+                <button class="btn" onclick="showScreen('menuScreen')">Browse Menu</button>
+                <button class="btn btn-secondary" onclick="testConnection()">Test Server Connection</button>
+            </div>
+        </div>
+        
+        <!-- Menu Screen -->
+        <div class="screen" id="menuScreen">
+            <h2 style="margin-bottom: 20px;">Our Delicious Pizzas</h2>
+            <div id="menuItems">
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <p>Loading fresh pizzas...</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Cart Screen -->
+        <div class="screen" id="cartScreen">
+            <h2 style="margin-bottom: 20px;">Your Cart</h2>
+            <div id="cartItems">
+                <div style="text-align: center; padding: 40px;">
+                    <div style="font-size: 60px; margin-bottom: 20px;">🛒</div>
+                    <h3>Your cart is empty</h3>
+                    <p style="color: #666; margin: 15px 0;">Add some delicious pizzas from the menu!</p>
+                    <button class="btn" onclick="showScreen('menuScreen')">Browse Menu</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Navigation -->
+    <div class="nav-bar">
+        <button class="nav-btn active" onclick="showScreen('welcomeScreen')">
+            🏠<br>Home
+        </button>
+        <button class="nav-btn" onclick="showScreen('menuScreen')">
+            🍕<br>Menu
+        </button>
+        <button class="nav-btn" onclick="showScreen('cartScreen')">
+            🛒<br>Cart<span class="cart-count" id="cartCount" style="display: none;">0</span>
+        </button>
+    </div>
+    
+    <script>
+        let currentScreen = 'welcomeScreen';
+        let cart = [];
+        
+        // Sample pizza data (will be replaced with API data)
+        const samplePizzas = [
+            {
+                id: 1,
+                name: "Margherita Classic",
+                description: "Fresh tomatoes, mozzarella, and basil on thin crust",
+                price: 12.99,
+                image: "🍕"
+            },
+            {
+                id: 2,
+                name: "Pepperoni Supreme",
+                description: "Spicy pepperoni with extra cheese and herbs",
+                price: 14.99,
+                image: "🍕"
+            },
+            {
+                id: 3,
+                name: "Hawaiian Paradise",
+                description: "Ham, pineapple, and mozzarella cheese",
+                price: 15.99,
+                image: "🍕"
+            },
+            {
+                id: 4,
+                name: "Veggie Supreme",
+                description: "Fresh vegetables, bell peppers, and olives",
+                price: 16.99,
+                image: "🍕"
+            },
+            {
+                id: 5,
+                name: "Meat Lovers",
+                description: "Pepperoni, sausage, bacon, and ham",
+                price: 18.99,
+                image: "🍕"
+            },
+            {
+                id: 6,
+                name: "BBQ Chicken",
+                description: "Grilled chicken with BBQ sauce and onions",
+                price: 17.99,
+                image: "🍕"
+            }
+        ];
+        
+        function showScreen(screenId) {
+            // Hide all screens
+            document.querySelectorAll('.screen').forEach(screen => {
+                screen.classList.remove('active');
+            });
+            
+            // Show selected screen
+            document.getElementById(screenId).classList.add('active');
+            
+            // Update navigation
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            currentScreen = screenId;
+            
+            // Load content based on screen
+            if (screenId === 'menuScreen') {
+                loadMenu();
+            } else if (screenId === 'cartScreen') {
+                loadCart();
+            }
+        }
+        
+        function loadMenu() {
+            const menuContainer = document.getElementById('menuItems');
+            
+            // Try to load from API first, fall back to sample data
+            fetch('/api/menu')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success && data.pizzas) {
+                        displayPizzas(data.pizzas);
+                    } else {
+                        displayPizzas(samplePizzas);
+                    }
+                })
+                .catch(error => {
+                    console.log('API not available, using sample data');
+                    displayPizzas(samplePizzas);
+                });
+        }
+        
+        function displayPizzas(pizzas) {
+            const menuContainer = document.getElementById('menuItems');
+            
+            menuContainer.innerHTML = pizzas.map(pizza => `
+                <div class="pizza-card">
+                    <h3>${pizza.name}</h3>
+                    <p>${pizza.description}</p>
+                    <div class="clearfix">
+                        <button class="add-btn" onclick="addToCart(${pizza.id})">Add to Cart</button>
+                        <span class="pizza-price">$${pizza.price.toFixed(2)}</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        function addToCart(pizzaId) {
+            const pizza = samplePizzas.find(p => p.id === pizzaId);
+            if (pizza) {
+                cart.push(pizza);
+                updateCartCount();
+                
+                // Show success feedback
+                showNotification(`${pizza.name} added to cart!`);
+            }
+        }
+        
+        function updateCartCount() {
+            const cartCount = document.getElementById('cartCount');
+            if (cart.length > 0) {
+                cartCount.textContent = cart.length;
+                cartCount.style.display = 'inline-flex';
+            } else {
+                cartCount.style.display = 'none';
+            }
+        }
+        
+        function loadCart() {
+            const cartContainer = document.getElementById('cartItems');
+            
+            if (cart.length === 0) {
+                cartContainer.innerHTML = `
+                    <div style="text-align: center; padding: 40px;">
+                        <div style="font-size: 60px; margin-bottom: 20px;">🛒</div>
+                        <h3>Your cart is empty</h3>
+                        <p style="color: #666; margin: 15px 0;">Add some delicious pizzas from the menu!</p>
+                        <button class="btn" onclick="showScreen('menuScreen')">Browse Menu</button>
+                    </div>
+                `;
+            } else {
+                const total = cart.reduce((sum, pizza) => sum + pizza.price, 0);
+                cartContainer.innerHTML = `
+                    ${cart.map((pizza, index) => `
+                        <div class="pizza-card">
+                            <h3>${pizza.name}</h3>
+                            <div class="clearfix">
+                                <button class="btn-secondary" onclick="removeFromCart(${index})" style="background: #dc3545; border: none; padding: 8px 16px; border-radius: 6px; color: white;">Remove</button>
+                                <span class="pizza-price">$${pizza.price.toFixed(2)}</span>
+                            </div>
+                        </div>
+                    `).join('')}
+                    <div class="pizza-card" style="border-left-color: #27ae60;">
+                        <h3>Total: $${total.toFixed(2)}</h3>
+                        <button class="btn" onclick="checkout()">Proceed to Checkout</button>
+                    </div>
+                `;
+            }
+        }
+        
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartCount();
+            loadCart();
+        }
+        
+        function checkout() {
+            showNotification('Checkout feature coming soon! Your cart is ready.');
+        }
+        
+        function testConnection() {
+            const statusElement = document.getElementById('connectionStatus');
+            statusElement.innerHTML = '🔄 Testing connection...';
+            statusElement.style.background = '#f39c12';
+            
+            fetch('/api/menu')
+                .then(response => {
+                    if (response.ok) {
+                        statusElement.innerHTML = '✅ Server connected successfully!';
+                        statusElement.style.background = '#27ae60';
+                    } else {
+                        throw new Error('Server responded with error');
+                    }
+                })
+                .catch(error => {
+                    statusElement.innerHTML = '⚠️ Using offline mode - Limited functionality';
+                    statusElement.style.background = '#e67e22';
+                });
+        }
+        
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 80px;
+                left: 50%;
+                transform: translateX(-50%);
+                background: #27ae60;
+                color: white;
+                padding: 12px 20px;
+                border-radius: 6px;
+                z-index: 1000;
+                font-weight: bold;
+            `;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                document.body.removeChild(notification);
+            }, 2000);
+        }
+        
+        // Initialize app
+        document.addEventListener('DOMContentLoaded', function() {
+            // Test connection on startup
+            setTimeout(testConnection, 1000);
+        });
+    </script>
+</body>
+</html>
