@@ -30,7 +30,10 @@ export class FirebaseStorage implements IStorage {
   private customerProfilesCollection = collection(db, "customerProfiles");
 
   constructor() {
-    this.initializeDefaultPizzas();
+    // Initialize default pizzas asynchronously without blocking constructor
+    this.initializeDefaultPizzas().catch(error => {
+      console.error("Failed to initialize default pizzas:", error);
+    });
   }
 
   private async initializeDefaultPizzas() {
