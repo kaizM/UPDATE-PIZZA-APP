@@ -1,0 +1,68 @@
+Replace the Hello Android! screen with a WebView that loads your employee dashboard.
+
+✅ STEP-BY-STEP SOLUTION
+Here’s how to replace your current MainActivity.kt to show the dashboard using WebView in Jetpack Compose.
+
+🛠 1. Add Internet Permission
+
+In your AndroidManifest.xml, make sure you add this inside the <manifest> tag:
+
+<uses-permission android:name="android.permission.INTERNET" />
+🧱 2. Update Your MainActivity.kt
+
+Replace your existing file with this:
+
+package com.example.pizza
+
+import android.os.Bundle
+import android.webkit.WebView
+import android.webkit.WebViewClient
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.viewinterop.AndroidView
+import com.example.pizza.ui.theme.PizzaTheme
+
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        setContent {
+            PizzaTheme {
+                WebDashboard()
+            }
+        }
+    }
+}
+And add this @Composable function below:
+
+import androidx.compose.runtime.Composable
+
+@Composable
+fun WebDashboard() {
+    AndroidView(
+        factory = { context ->
+            WebView(context).apply {
+                settings.javaScriptEnabled = true
+                webViewClient = WebViewClient()
+                loadUrl("https://your-employee-dashboard-url.com") // <-- change this!
+            }
+        },
+        modifier = Modifier.fillMaxSize()
+    )
+}
+📌 Replace the URL
+
+In the loadUrl(...) line:
+
+loadUrl("https://your-employee-dashboard-url.com")
+Replace that with your real hosted dashboard URL (e.g. Firebase Hosting, Vercel, etc.)
+
+If you’re using local testing and your backend is on your computer, use your LAN IP (e.g. http://192.168.x.x:5000) — not localhost.
+
+🧪 Final Notes:
+
+✅ This works with Android Studio or Replit with Android plugin
+📦 You do not need Jetpack Compose UI for a WebView wrapper
+📲 It works as an embedded employee app — just like Uber Eats for staff

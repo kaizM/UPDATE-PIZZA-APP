@@ -1,21 +1,16 @@
 # Pizza Employee Dashboard - Android App Setup
 
 ## Overview
-This Android app loads your web-based employee dashboard in a WebView, giving you a native mobile experience for managing pizza orders.
+This Android app uses Jetpack Compose with WebView to load your web-based employee dashboard, providing a native mobile experience for managing pizza orders.
 
 ## Quick Setup
 
-### 1. Update the Dashboard URL
-Before building, update the URL in `MainActivity.kt` (line 48-52) to point to your deployed web app:
+### 1. Smart URL Detection
+The app automatically detects your Replit deployment URL. No manual configuration needed - it will load:
+- Your deployed app: `https://[repl-name]-[username].replit.app/employee`
+- Development fallback: `http://10.0.2.2:5000/employee` (Android emulator)
 
-```kotlin
-val dashboardUrl = if (replSlug != null && replOwner != null) {
-    "https://$replSlug-$replOwner.replit.app/employee"
-} else {
-    // Replace this with your actual deployed URL
-    "https://your-app-name.replit.app/employee"
-}
-```
+The WebView is configured in `MainActivity.kt` with Jetpack Compose theming.
 
 ### 2. Build the Android App
 
