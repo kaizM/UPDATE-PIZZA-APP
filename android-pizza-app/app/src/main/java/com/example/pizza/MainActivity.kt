@@ -3,7 +3,6 @@ package com.example.pizza
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -18,14 +17,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.pizza.ui.theme.PizzaTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContent {
-            PizzaTheme {
+            MaterialTheme {
                 PizzaApp()
             }
         }
@@ -34,38 +31,53 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun PizzaApp() {
-    var currentScreen by remember { mutableStateOf("home") }
+    var currentPage by remember { mutableStateOf("home") }
+    var cartItems by remember { mutableStateOf(listOf<String>()) }
     
-    when (currentScreen) {
-        "home" -> HomeScreen { currentScreen = "menu" }
-        "menu" -> MenuScreen { currentScreen = "home" }
-        else -> HomeScreen { currentScreen = "menu" }
+    when (currentPage) {
+        "home" -> HomePage(
+            onMenuClick = { currentPage = "menu" }
+        )
+        "menu" -> MenuPage(
+            onAddToCart = { pizza ->
+                cartItems = cartItems + pizza
+            },
+            onBackClick = { currentPage = "home" },
+            onCartClick = { currentPage = "cart" },
+            cartCount = cartItems.size
+        )
+        "cart" -> CartPage(
+            items = cartItems,
+            onBackClick = { currentPage = "menu" },
+            onRemoveItem = { index ->
+                cartItems = cartItems.toMutableList().apply { removeAt(index) }
+            }
+        )
     }
 }
 
 @Composable
-fun HomeScreen(onNavigateToMenu: () -> Unit) {
+fun HomePage(onMenuClick: () -> Unit) {
     Column(
         modifier = Modifier
             .fillMaxSize()
             .background(Color.White)
-            .padding(20.dp),
+            .padding(24.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
         Text(
             text = "🍕",
-            fontSize = 80.sp,
-            modifier = Modifier.padding(bottom = 20.dp)
+            fontSize = 100.sp,
+            modifier = Modifier.padding(bottom = 24.dp)
         )
         
         Text(
             text = "Pizza Paradise",
             fontSize = 32.sp,
             fontWeight = FontWeight.Bold,
-            color = Color.Red,
-            textAlign = TextAlign.Center,
-            modifier = Modifier.padding(bottom = 10.dp)
+            color = Color(0xFFE53E3E),
+            modifier = Modifier.padding(bottom = 8.dp)
         )
         
         Text(
@@ -77,16 +89,16 @@ fun HomeScreen(onNavigateToMenu: () -> Unit) {
         )
         
         Button(
-            onClick = onNavigateToMenu,
+            onClick = onMenuClick,
             modifier = Modifier
                 .fillMaxWidth()
                 .height(56.dp),
-            colors = ButtonDefaults.buttonColors(containerColor = Color.Red)
+            colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFE53E3E))
         ) {
             Text(
-                text = "Browse Menu",
+                text = "View Menu",
                 fontSize = 18.sp,
-                color = Color.White
+                fontWeight = FontWeight.Bold
             )
         }
         
@@ -95,22 +107,22 @@ fun HomeScreen(onNavigateToMenu: () -> Unit) {
         Card(
             modifier = Modifier.fillMaxWidth(),
             shape = RoundedCornerShape(12.dp),
-            colors = CardDefaults.cardColors(containerColor = Color(0xFFF5F5F5))
+            colors = CardDefaults.cardColors(containerColor = Color(0xFFF7FAFC))
         ) {
             Column(
-                modifier = Modifier.padding(16.dp)
+                modifier = Modifier.padding(16.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Text(
-                    text = "✅ Server Connected",
+                    text = "📱 Mobile App Ready",
                     fontSize = 16.sp,
                     fontWeight = FontWeight.Bold,
-                    color = Color.Green
+                    color = Color(0xFF38A169)
                 )
                 Text(
-                    text = "Ready to order fresh pizzas!",
+                    text = "Order fresh pizzas anytime!",
                     fontSize = 14.sp,
-                    color = Color.Gray,
-                    modifier = Modifier.padding(top = 4.dp)
+                    color = Color.Gray
                 )
             }
         }
@@ -118,14 +130,19 @@ fun HomeScreen(onNavigateToMenu: () -> Unit) {
 }
 
 @Composable
-fun MenuScreen(onBack: () -> Unit) {
+fun MenuPage(
+    onAddToCart: (String) -> Unit,
+    onBackClick: () -> Unit,
+    onCartClick: () -> Unit,
+    cartCount: Int
+) {
     val pizzas = listOf(
-        "🍕 Margherita - $12.99",
-        "🍕 Pepperoni - $14.99",
-        "🍕 Hawaiian - $15.99",
-        "🍕 Veggie Supreme - $16.99",
-        "🍕 Meat Lovers - $18.99",
-        "🍕 BBQ Chicken - $17.99"
+        "Margherita - $12.99",
+        "Pepperoni - $14.99", 
+        "Hawaiian - $15.99",
+        "Veggie Supreme - $16.99",
+        "Meat Lovers - $18.99",
+        "BBQ Chicken - $17.99"
     )
     
     Column(
@@ -137,30 +154,33 @@ fun MenuScreen(onBack: () -> Unit) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .background(Color.Red)
+                .background(Color(0xFFE53E3E))
                 .padding(16.dp),
+            horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
             Button(
-                onClick = onBack,
+                onClick = onBackClick,
                 colors = ButtonDefaults.buttonColors(containerColor = Color.White)
             ) {
-                Text("← Back", color = Color.Red)
+                Text("← Back", color = Color(0xFFE53E3E))
             }
-            
-            Spacer(modifier = Modifier.weight(1f))
             
             Text(
                 text = "Pizza Menu",
-                fontSize = 24.sp,
+                fontSize = 20.sp,
                 fontWeight = FontWeight.Bold,
                 color = Color.White
             )
             
-            Spacer(modifier = Modifier.weight(1f))
+            Button(
+                onClick = onCartClick,
+                colors = ButtonDefaults.buttonColors(containerColor = Color.White)
+            ) {
+                Text("Cart ($cartCount)", color = Color(0xFFE53E3E))
+            }
         }
         
-        // Menu Items
         LazyColumn(
             modifier = Modifier.padding(16.dp),
             verticalArrangement = Arrangement.spacedBy(12.dp)
@@ -169,7 +189,7 @@ fun MenuScreen(onBack: () -> Unit) {
                 Card(
                     modifier = Modifier.fillMaxWidth(),
                     shape = RoundedCornerShape(8.dp),
-                    colors = CardDefaults.cardColors(containerColor = Color(0xFFF9F9F9))
+                    colors = CardDefaults.cardColors(containerColor = Color(0xFFFAFAFA))
                 ) {
                     Row(
                         modifier = Modifier
@@ -178,47 +198,151 @@ fun MenuScreen(onBack: () -> Unit) {
                         horizontalArrangement = Arrangement.SpaceBetween,
                         verticalAlignment = Alignment.CenterVertically
                     ) {
-                        Text(
-                            text = pizza,
-                            fontSize = 16.sp,
-                            modifier = Modifier.weight(1f)
-                        )
+                        Column(modifier = Modifier.weight(1f)) {
+                            Text(
+                                text = "🍕 $pizza",
+                                fontSize = 16.sp,
+                                fontWeight = FontWeight.Medium
+                            )
+                        }
                         
                         Button(
-                            onClick = { /* Add to cart */ },
-                            colors = ButtonDefaults.buttonColors(containerColor = Color.Red)
+                            onClick = { onAddToCart(pizza) },
+                            colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF38A169)),
+                            modifier = Modifier.padding(start = 8.dp)
                         ) {
                             Text("Add", color = Color.White)
                         }
                     }
                 }
             }
+        }
+    }
+}
+
+@Composable
+fun CartPage(
+    items: List<String>,
+    onBackClick: () -> Unit,
+    onRemoveItem: (Int) -> Unit
+) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color.White)
+    ) {
+        // Header
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(Color(0xFFE53E3E))
+                .padding(16.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Button(
+                onClick = onBackClick,
+                colors = ButtonDefaults.buttonColors(containerColor = Color.White)
+            ) {
+                Text("← Menu", color = Color(0xFFE53E3E))
+            }
             
-            item {
-                Spacer(modifier = Modifier.height(20.dp))
+            Spacer(modifier = Modifier.weight(1f))
+            
+            Text(
+                text = "Your Cart",
+                fontSize = 20.sp,
+                fontWeight = FontWeight.Bold,
+                color = Color.White
+            )
+            
+            Spacer(modifier = Modifier.weight(1f))
+        }
+        
+        if (items.isEmpty()) {
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(24.dp),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center
+            ) {
+                Text(
+                    text = "🛒",
+                    fontSize = 80.sp,
+                    modifier = Modifier.padding(bottom = 16.dp)
+                )
                 
-                Card(
-                    modifier = Modifier.fillMaxWidth(),
-                    shape = RoundedCornerShape(8.dp),
-                    colors = CardDefaults.cardColors(containerColor = Color(0xFFE8F5E8))
-                ) {
-                    Column(
-                        modifier = Modifier.padding(16.dp),
-                        horizontalAlignment = Alignment.CenterHorizontally
+                Text(
+                    text = "Cart is Empty",
+                    fontSize = 24.sp,
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier.padding(bottom = 8.dp)
+                )
+                
+                Text(
+                    text = "Add some delicious pizzas!",
+                    fontSize = 16.sp,
+                    color = Color.Gray,
+                    textAlign = TextAlign.Center
+                )
+            }
+        } else {
+            LazyColumn(
+                modifier = Modifier.padding(16.dp),
+                verticalArrangement = Arrangement.spacedBy(12.dp)
+            ) {
+                items(items.size) { index ->
+                    Card(
+                        modifier = Modifier.fillMaxWidth(),
+                        shape = RoundedCornerShape(8.dp),
+                        colors = CardDefaults.cardColors(containerColor = Color(0xFFFAFAFA))
                     ) {
-                        Text(
-                            text = "🚀 Ready for Orders!",
-                            fontSize = 18.sp,
-                            fontWeight = FontWeight.Bold,
-                            color = Color(0xFF2E7D32)
-                        )
-                        Text(
-                            text = "Connected to your Replit server on port 5000",
-                            fontSize = 14.sp,
-                            color = Color(0xFF2E7D32),
-                            textAlign = TextAlign.Center,
-                            modifier = Modifier.padding(top = 4.dp)
-                        )
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(16.dp),
+                            horizontalArrangement = Arrangement.SpaceBetween,
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Text(
+                                text = "🍕 ${items[index]}",
+                                fontSize = 16.sp,
+                                modifier = Modifier.weight(1f)
+                            )
+                            
+                            Button(
+                                onClick = { onRemoveItem(index) },
+                                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFE53E3E)),
+                                modifier = Modifier.padding(start = 8.dp)
+                            ) {
+                                Text("Remove", color = Color.White)
+                            }
+                        }
+                    }
+                }
+                
+                item {
+                    Card(
+                        modifier = Modifier.fillMaxWidth(),
+                        shape = RoundedCornerShape(8.dp),
+                        colors = CardDefaults.cardColors(containerColor = Color(0xFF38A169))
+                    ) {
+                        Column(
+                            modifier = Modifier.padding(16.dp),
+                            horizontalAlignment = Alignment.CenterHorizontally
+                        ) {
+                            Text(
+                                text = "Ready to Order!",
+                                fontSize = 18.sp,
+                                fontWeight = FontWeight.Bold,
+                                color = Color.White
+                            )
+                            Text(
+                                text = "${items.size} items in cart",
+                                fontSize = 14.sp,
+                                color = Color.White.copy(alpha = 0.9f)
+                            )
+                        }
                     }
                 }
             }
