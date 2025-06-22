@@ -123,6 +123,7 @@ The application is configured for multiple deployment scenarios:
 - June 22, 2025: Added Android build scripts and comprehensive setup documentation
 - June 22, 2025: Configured Firebase as primary database with user's project credentials
 - June 22, 2025: Successfully connected Firebase Firestore for all user and order data
+- June 22, 2025: Added PostgreSQL database as secondary storage option with full schema
 
 ## Changelog
 - June 22, 2025: Initial setup

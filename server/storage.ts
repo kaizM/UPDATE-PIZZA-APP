@@ -270,6 +270,12 @@ export class MemStorage implements IStorage {
 }
 
 import { FirebaseStorage } from "./firebaseStorage";
+import { DatabaseStorage } from "./databaseStorage";
 
-// Using Firebase as primary database for users and all data
-export const storage = new FirebaseStorage();
+// Configure storage based on environment preference
+// Default to Firebase, fallback to PostgreSQL if needed
+const USE_POSTGRES = process.env.USE_POSTGRES === 'true';
+
+export const storage = USE_POSTGRES ? new DatabaseStorage() : new FirebaseStorage();
+
+console.log(`Using ${USE_POSTGRES ? 'PostgreSQL' : 'Firebase'} as primary database`);
