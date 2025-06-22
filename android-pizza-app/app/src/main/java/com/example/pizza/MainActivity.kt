@@ -4,18 +4,20 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ShoppingCart
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.pizza.ui.theme.PizzaTheme
 
 class MainActivity : ComponentActivity() {
@@ -24,231 +26,201 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             PizzaTheme {
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    PizzaOrderingApp()
-                }
+                PizzaApp()
             }
         }
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun PizzaOrderingApp() {
-    var currentScreen by remember { mutableStateOf("welcome") }
+fun PizzaApp() {
+    var currentScreen by remember { mutableStateOf("home") }
     
     when (currentScreen) {
-        "welcome" -> WelcomeScreen(onNavigateToMenu = { currentScreen = "menu" })
-        "menu" -> MenuScreen(onNavigateToCart = { currentScreen = "cart" })
-        "cart" -> CartScreen(onNavigateBack = { currentScreen = "menu" })
-        else -> WelcomeScreen(onNavigateToMenu = { currentScreen = "menu" })
+        "home" -> HomeScreen { currentScreen = "menu" }
+        "menu" -> MenuScreen { currentScreen = "home" }
+        else -> HomeScreen { currentScreen = "menu" }
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun WelcomeScreen(onNavigateToMenu: () -> Unit) {
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                title = { Text("Pizza Ordering App") }
-            )
-        }
-    ) { paddingValues ->
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(paddingValues)
-                .padding(24.dp),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
-        ) {
-            Text(
-                text = "🍕",
-                style = MaterialTheme.typography.displayLarge
-            )
-            
-            Spacer(modifier = Modifier.height(16.dp))
-            
-            Text(
-                text = "Welcome to Pizza Paradise!",
-                style = MaterialTheme.typography.headlineMedium,
-                fontWeight = FontWeight.Bold,
-                textAlign = TextAlign.Center
-            )
-            
-            Spacer(modifier = Modifier.height(8.dp))
-            
-            Text(
-                text = "Delicious pizzas made fresh, just for you",
-                style = MaterialTheme.typography.bodyLarge,
-                textAlign = TextAlign.Center,
-                color = MaterialTheme.colorScheme.secondary
-            )
-            
-            Spacer(modifier = Modifier.height(32.dp))
-            
-            Button(
-                onClick = onNavigateToMenu,
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                Text("Browse Menu")
-            }
-            
-            Spacer(modifier = Modifier.height(16.dp))
-            
-            Card(
-                modifier = Modifier.fillMaxWidth(),
-                elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
-            ) {
-                Column(
-                    modifier = Modifier.padding(16.dp)
-                ) {
-                    Text(
-                        text = "Connected to API Server",
-                        style = MaterialTheme.typography.titleMedium,
-                        fontWeight = FontWeight.Bold
-                    )
-                    Text(
-                        text = "Ready to load fresh pizza data from your server",
-                        style = MaterialTheme.typography.bodyMedium,
-                        color = MaterialTheme.colorScheme.secondary
-                    )
-                }
-            }
-        }
-    }
-}
-
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun MenuScreen(onNavigateToCart: () -> Unit) {
-    val pizzas = remember {
-        listOf(
-            "Margherita - Classic tomato and mozzarella",
-            "Pepperoni - Spicy pepperoni with cheese",
-            "Hawaiian - Ham and pineapple",
-            "Veggie Supreme - Fresh vegetables and herbs",
-            "Meat Lovers - Pepperoni, sausage, and bacon"
+fun HomeScreen(onNavigateToMenu: () -> Unit) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color.White)
+            .padding(20.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+        Text(
+            text = "🍕",
+            fontSize = 80.sp,
+            modifier = Modifier.padding(bottom = 20.dp)
         )
-    }
-    
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                title = { Text("Pizza Menu") },
-                actions = {
-                    IconButton(onClick = onNavigateToCart) {
-                        Icon(Icons.Default.ShoppingCart, contentDescription = "Cart")
-                    }
-                }
+        
+        Text(
+            text = "Pizza Paradise",
+            fontSize = 32.sp,
+            fontWeight = FontWeight.Bold,
+            color = Color.Red,
+            textAlign = TextAlign.Center,
+            modifier = Modifier.padding(bottom = 10.dp)
+        )
+        
+        Text(
+            text = "Delicious pizzas made fresh!",
+            fontSize = 18.sp,
+            color = Color.Gray,
+            textAlign = TextAlign.Center,
+            modifier = Modifier.padding(bottom = 40.dp)
+        )
+        
+        Button(
+            onClick = onNavigateToMenu,
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(56.dp),
+            colors = ButtonDefaults.buttonColors(containerColor = Color.Red)
+        ) {
+            Text(
+                text = "Browse Menu",
+                fontSize = 18.sp,
+                color = Color.White
             )
         }
-    ) { paddingValues ->
-        LazyColumn(
-            modifier = Modifier.padding(paddingValues),
-            contentPadding = PaddingValues(16.dp),
-            verticalArrangement = Arrangement.spacedBy(12.dp)
+        
+        Spacer(modifier = Modifier.height(20.dp))
+        
+        Card(
+            modifier = Modifier.fillMaxWidth(),
+            shape = RoundedCornerShape(12.dp),
+            colors = CardDefaults.cardColors(containerColor = Color(0xFFF5F5F5))
         ) {
-            item {
+            Column(
+                modifier = Modifier.padding(16.dp)
+            ) {
                 Text(
-                    text = "Our Delicious Pizzas",
-                    style = MaterialTheme.typography.headlineSmall,
+                    text = "✅ Server Connected",
+                    fontSize = 16.sp,
                     fontWeight = FontWeight.Bold,
-                    modifier = Modifier.padding(bottom = 8.dp)
+                    color = Color.Green
+                )
+                Text(
+                    text = "Ready to order fresh pizzas!",
+                    fontSize = 14.sp,
+                    color = Color.Gray,
+                    modifier = Modifier.padding(top = 4.dp)
                 )
             }
+        }
+    }
+}
+
+@Composable
+fun MenuScreen(onBack: () -> Unit) {
+    val pizzas = listOf(
+        "🍕 Margherita - $12.99",
+        "🍕 Pepperoni - $14.99",
+        "🍕 Hawaiian - $15.99",
+        "🍕 Veggie Supreme - $16.99",
+        "🍕 Meat Lovers - $18.99",
+        "🍕 BBQ Chicken - $17.99"
+    )
+    
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color.White)
+    ) {
+        // Header
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(Color.Red)
+                .padding(16.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Button(
+                onClick = onBack,
+                colors = ButtonDefaults.buttonColors(containerColor = Color.White)
+            ) {
+                Text("← Back", color = Color.Red)
+            }
             
+            Spacer(modifier = Modifier.weight(1f))
+            
+            Text(
+                text = "Pizza Menu",
+                fontSize = 24.sp,
+                fontWeight = FontWeight.Bold,
+                color = Color.White
+            )
+            
+            Spacer(modifier = Modifier.weight(1f))
+        }
+        
+        // Menu Items
+        LazyColumn(
+            modifier = Modifier.padding(16.dp),
+            verticalArrangement = Arrangement.spacedBy(12.dp)
+        ) {
             items(pizzas) { pizza ->
                 Card(
                     modifier = Modifier.fillMaxWidth(),
-                    elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
+                    shape = RoundedCornerShape(8.dp),
+                    colors = CardDefaults.cardColors(containerColor = Color(0xFFF9F9F9))
                 ) {
-                    Column(
-                        modifier = Modifier.padding(16.dp)
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(16.dp),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically
                     ) {
                         Text(
                             text = pizza,
-                            style = MaterialTheme.typography.titleMedium
+                            fontSize = 16.sp,
+                            modifier = Modifier.weight(1f)
                         )
-                        Spacer(modifier = Modifier.height(8.dp))
-                        Row(
-                            modifier = Modifier.fillMaxWidth(),
-                            horizontalArrangement = Arrangement.SpaceBetween,
-                            verticalAlignment = Alignment.CenterVertically
+                        
+                        Button(
+                            onClick = { /* Add to cart */ },
+                            colors = ButtonDefaults.buttonColors(containerColor = Color.Red)
                         ) {
-                            Text(
-                                text = "$12.99",
-                                style = MaterialTheme.typography.titleMedium,
-                                fontWeight = FontWeight.Bold,
-                                color = MaterialTheme.colorScheme.primary
-                            )
-                            Button(onClick = { /* Add to cart */ }) {
-                                Text("Add to Cart")
-                            }
+                            Text("Add", color = Color.White)
                         }
                     }
                 }
             }
-        }
-    }
-}
-
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun CartScreen(onNavigateBack: () -> Unit) {
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                title = { Text("Your Cart") },
-                navigationIcon = {
-                    IconButton(onClick = onNavigateBack) {
-                        Icon(Icons.Default.ShoppingCart, contentDescription = "Back")
+            
+            item {
+                Spacer(modifier = Modifier.height(20.dp))
+                
+                Card(
+                    modifier = Modifier.fillMaxWidth(),
+                    shape = RoundedCornerShape(8.dp),
+                    colors = CardDefaults.cardColors(containerColor = Color(0xFFE8F5E8))
+                ) {
+                    Column(
+                        modifier = Modifier.padding(16.dp),
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+                        Text(
+                            text = "🚀 Ready for Orders!",
+                            fontSize = 18.sp,
+                            fontWeight = FontWeight.Bold,
+                            color = Color(0xFF2E7D32)
+                        )
+                        Text(
+                            text = "Connected to your Replit server on port 5000",
+                            fontSize = 14.sp,
+                            color = Color(0xFF2E7D32),
+                            textAlign = TextAlign.Center,
+                            modifier = Modifier.padding(top = 4.dp)
+                        )
                     }
                 }
-            )
-        }
-    ) { paddingValues ->
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(paddingValues)
-                .padding(16.dp),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
-        ) {
-            Text(
-                text = "🛒",
-                style = MaterialTheme.typography.displayMedium
-            )
-            
-            Spacer(modifier = Modifier.height(16.dp))
-            
-            Text(
-                text = "Your cart is empty",
-                style = MaterialTheme.typography.headlineSmall,
-                fontWeight = FontWeight.Bold
-            )
-            
-            Spacer(modifier = Modifier.height(8.dp))
-            
-            Text(
-                text = "Add some delicious pizzas from the menu!",
-                style = MaterialTheme.typography.bodyLarge,
-                textAlign = TextAlign.Center,
-                color = MaterialTheme.colorScheme.secondary
-            )
-            
-            Spacer(modifier = Modifier.height(32.dp))
-            
-            Button(
-                onClick = onNavigateBack,
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                Text("Back to Menu")
             }
         }
     }
