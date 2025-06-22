@@ -1,0 +1,124 @@
+--------- beginning of system
+--------- beginning of main
+--------- beginning of crash
+2025-06-22 16:15:08.477 14149-14149 m.example.pizza         com.example.pizza                    I  Late-enabling -Xcheck:jni
+2025-06-22 16:15:08.765 14149-14149 m.example.pizza         com.example.pizza                    I  Using CollectorTypeCMC GC.
+2025-06-22 16:15:09.038 14149-14149 nativeloader            com.example.pizza                    D  Load libframework-connectivity-tiramisu-jni.so using APEX ns com_android_tethering for caller /apex/com.android.tethering/javalib/framework-connectivity-t.jar: ok
+2025-06-22 16:15:10.710 14149-14149 nativeloader            com.example.pizza                    D  Configuring clns-7 for other apk /data/app/~~Rc4YHCiR6RKfOYzpHTOImw==/com.example.pizza-eKV0PzPM05P87Ft7mJBefQ==/base.apk. target_sdk_version=35, uses_libraries=, library_path=/data/app/~~Rc4YHCiR6RKfOYzpHTOImw==/com.example.pizza-eKV0PzPM05P87Ft7mJBefQ==/lib/arm64:/data/app/~~Rc4YHCiR6RKfOYzpHTOImw==/com.example.pizza-eKV0PzPM05P87Ft7mJBefQ==/base.apk!/lib/arm64-v8a, permitted_path=/data:/mnt/expand:/data/user/0/com.example.pizza
+2025-06-22 16:15:10.777 14149-14149 CompatChangeReporter    com.example.pizza                    D  Compat change id reported: 202956589; UID 10214; state: ENABLED
+2025-06-22 16:15:10.802 14149-14149 m.example.pizza         com.example.pizza                    I  AssetManager2(0xb4000075ab7983f8) locale list changing from [] to [en-US]
+2025-06-22 16:15:10.848 14149-14149 GraphicsEnvironment     com.example.pizza                    V  Currently set values for:
+2025-06-22 16:15:10.848 14149-14149 GraphicsEnvironment     com.example.pizza                    V    angle_gl_driver_selection_pkgs=[]
+2025-06-22 16:15:10.848 14149-14149 GraphicsEnvironment     com.example.pizza                    V    angle_gl_driver_selection_values=[]
+2025-06-22 16:15:10.848 14149-14149 GraphicsEnvironment     com.example.pizza                    V  com.example.pizza is not listed in per-application setting
+2025-06-22 16:15:10.849 14149-14149 GraphicsEnvironment     com.example.pizza                    V  ANGLE allowlist from config: 
+2025-06-22 16:15:10.849 14149-14149 GraphicsEnvironment     com.example.pizza                    V  com.example.pizza is not listed in ANGLE allowlist or settings, returning default
+2025-06-22 16:15:10.850 14149-14149 GraphicsEnvironment     com.example.pizza                    V  Neither updatable production driver nor prerelease driver is supported.
+2025-06-22 16:15:10.895 14149-14149 CompatChangeReporter    com.example.pizza                    D  Compat change id reported: 279646685; UID 10214; state: ENABLED
+2025-06-22 16:15:10.977 14149-14149 m.example.pizza         com.example.pizza                    I  AssetManager2(0xb4000075ab78bbf8) locale list changing from [] to [en-US]
+2025-06-22 16:15:11.044 14149-14149 CompatChangeReporter    com.example.pizza                    D  Compat change id reported: 309578419; UID 10214; state: ENABLED
+2025-06-22 16:15:11.046 14149-14149 DesktopModeFlags        com.example.pizza                    D  Toggle override initialized to: OVERRIDE_UNSET
+2025-06-22 16:15:11.132 14149-14149 CompatChangeReporter    com.example.pizza                    D  Compat change id reported: 352594277; UID 10214; state: ENABLED
+2025-06-22 16:15:11.178 14149-14149 CompatChangeReporter    com.example.pizza                    D  Compat change id reported: 349153669; UID 10214; state: ENABLED
+2025-06-22 16:15:11.182 14149-14149 HWUI                    com.example.pizza                    W  Unknown dataspace 0
+2025-06-22 16:15:12.043 14149-14173 EGL_emulation           com.example.pizza                    I  Opening libGLESv1_CM_emulation.so
+2025-06-22 16:15:12.046 14149-14173 EGL_emulation           com.example.pizza                    I  Opening libGLESv2_emulation.so
+2025-06-22 16:15:12.078 14149-14173 HWUI                    com.example.pizza                    W  Failed to choose config with EGL_SWAP_BEHAVIOR_PRESERVED, retrying without...
+2025-06-22 16:15:12.080 14149-14173 HWUI                    com.example.pizza                    W  Failed to initialize 101010-2 format, error = EGL_SUCCESS
+2025-06-22 16:15:12.196 14149-14159 m.example.pizza         com.example.pizza                    I  Compiler allocated 5175KB to compile void android.view.ViewRootImpl.performTraversals()
+2025-06-22 16:15:12.339 14149-14177 HWUI                    com.example.pizza                    I  Davey! duration=1117ms; Flags=1, FrameTimelineVsyncId=62265, IntendedVsync=36506602320632, Vsync=36506602320632, InputEventId=0, HandleInputStart=36506610191308, AnimationStart=36506610192475, PerformTraversalsStart=36506610193225, DrawStart=36507635476850, FrameDeadline=36506618987298, FrameStartTime=36506610185725, FrameInterval=16666666, WorkloadTarget=16666666, SyncQueued=36507655252017, SyncStart=36507657087100, IssueDrawCommandsStart=36507658842225, SwapBuffers=36507698899142, FrameCompleted=36507722151642, DequeueBufferDuration=6333, QueueBufferDuration=4278917, GpuCompleted=36507722092850, SwapBuffersCompleted=36507722151642, DisplayPresentTime=0, CommandSubmissionCompleted=36507698899142, 
+2025-06-22 16:15:12.378 14149-14149 Choreographer           com.example.pizza                    I  Skipped 61 frames!  The application may be doing too much work on its main thread.
+2025-06-22 16:15:12.444 14149-14149 InsetsController        com.example.pizza                    D  hide(ime(), fromIme=false)
+2025-06-22 16:15:12.446 14149-14149 ImeTracker              com.example.pizza                    I  com.example.pizza:cf0b9e79: onCancelled at PHASE_CLIENT_ALREADY_HIDDEN
+2025-06-22 16:15:16.511 14149-14184 ProfileInstaller        com.example.pizza                    D  Installing profile for com.example.pizza
+2025-06-22 16:15:39.544 14149-14160 m.example.pizza         com.example.pizza                    I  Background concurrent mark compact GC freed 2337KB AllocSpace bytes, 0(0B) LOS objects, 49% free, 3570KB/7141KB, paused 135us,14.522ms total 110.571ms
+---------------------------- PROCESS STARTED (14260) for package com.example.pizza ----------------------------
+2025-06-22 16:18:23.568 14260-14260 nativeloader            com.example.pizza                    D  Configuring clns-7 for other apk /data/app/~~Rc4YHCiR6RKfOYzpHTOImw==/com.example.pizza-eKV0PzPM05P87Ft7mJBefQ==/base.apk. target_sdk_version=35, uses_libraries=, library_path=/data/app/~~Rc4YHCiR6RKfOYzpHTOImw==/com.example.pizza-eKV0PzPM05P87Ft7mJBefQ==/lib/arm64:/data/app/~~Rc4YHCiR6RKfOYzpHTOImw==/com.example.pizza-eKV0PzPM05P87Ft7mJBefQ==/base.apk!/lib/arm64-v8a, permitted_path=/data:/mnt/expand:/data/user/0/com.example.pizza
+2025-06-22 16:18:23.578 14260-14260 CompatChangeReporter    com.example.pizza                    D  Compat change id reported: 202956589; UID 10214; state: ENABLED
+2025-06-22 16:18:23.597 14260-14260 m.example.pizza         com.example.pizza                    I  AssetManager2(0xb4000075ab7983f8) locale list changing from [] to [en-US]
+2025-06-22 16:18:23.604 14260-14260 m.example.pizza         com.example.pizza                    I  AssetManager2(0xb4000075ab795838) locale list changing from [] to [en-US]
+2025-06-22 16:18:23.618 14260-14260 GraphicsEnvironment     com.example.pizza                    V  Currently set values for:
+2025-06-22 16:18:23.619 14260-14260 GraphicsEnvironment     com.example.pizza                    V    angle_gl_driver_selection_pkgs=[]
+2025-06-22 16:18:23.619 14260-14260 GraphicsEnvironment     com.example.pizza                    V    angle_gl_driver_selection_values=[]
+2025-06-22 16:18:23.619 14260-14260 GraphicsEnvironment     com.example.pizza                    V  com.example.pizza is not listed in per-application setting
+2025-06-22 16:18:23.619 14260-14260 GraphicsEnvironment     com.example.pizza                    V  ANGLE allowlist from config: 
+2025-06-22 16:18:23.619 14260-14260 GraphicsEnvironment     com.example.pizza                    V  com.example.pizza is not listed in ANGLE allowlist or settings, returning default
+2025-06-22 16:18:23.619 14260-14260 GraphicsEnvironment     com.example.pizza                    V  Neither updatable production driver nor prerelease driver is supported.
+2025-06-22 16:18:23.663 14260-14260 CompatChangeReporter    com.example.pizza                    D  Compat change id reported: 279646685; UID 10214; state: ENABLED
+2025-06-22 16:18:23.706 14260-14260 m.example.pizza         com.example.pizza                    I  AssetManager2(0xb4000075ab791058) locale list changing from [] to [en-US]
+2025-06-22 16:18:23.771 14260-14260 CompatChangeReporter    com.example.pizza                    D  Compat change id reported: 309578419; UID 10214; state: ENABLED
+2025-06-22 16:18:23.775 14260-14260 DesktopModeFlags        com.example.pizza                    D  Toggle override initialized to: OVERRIDE_UNSET
+2025-06-22 16:18:23.939 14260-14260 CompatChangeReporter    com.example.pizza                    D  Compat change id reported: 352594277; UID 10214; state: ENABLED
+2025-06-22 16:18:23.961 14260-14260 CompatChangeReporter    com.example.pizza                    D  Compat change id reported: 349153669; UID 10214; state: ENABLED
+2025-06-22 16:18:23.965 14260-14260 HWUI                    com.example.pizza                    W  Unknown dataspace 0
+2025-06-22 16:18:24.298 14260-14275 EGL_emulation           com.example.pizza                    I  Opening libGLESv1_CM_emulation.so
+2025-06-22 16:18:24.300 14260-14275 EGL_emulation           com.example.pizza                    I  Opening libGLESv2_emulation.so
+2025-06-22 16:18:24.322 14260-14275 HWUI                    com.example.pizza                    W  Failed to choose config with EGL_SWAP_BEHAVIOR_PRESERVED, retrying without...
+2025-06-22 16:18:24.322 14260-14275 HWUI                    com.example.pizza                    W  Failed to initialize 101010-2 format, error = EGL_SUCCESS
+2025-06-22 16:18:24.356 14260-14265 m.example.pizza         com.example.pizza                    I  Compiler allocated 5175KB to compile void android.view.ViewRootImpl.performTraversals()
+2025-06-22 16:18:24.433 14260-14260 InsetsController        com.example.pizza                    D  hide(ime(), fromIme=false)
+2025-06-22 16:18:24.433 14260-14260 ImeTracker              com.example.pizza                    I  com.example.pizza:11982c62: onCancelled at PHASE_CLIENT_ALREADY_HIDDEN
+2025-06-22 16:18:29.607 14260-14286 ProfileInstaller        com.example.pizza                    D  Installing profile for com.example.pizza
+---------------------------- PROCESS ENDED (14260) for package com.example.pizza ----------------------------
+---------------------------- PROCESS STARTED (14323) for package com.example.pizza ----------------------------
+2025-06-22 16:18:38.447 14323-14323 nativeloader            com.example.pizza                    D  Configuring clns-7 for other apk /data/app/~~Rc4YHCiR6RKfOYzpHTOImw==/com.example.pizza-eKV0PzPM05P87Ft7mJBefQ==/base.apk. target_sdk_version=35, uses_libraries=, library_path=/data/app/~~Rc4YHCiR6RKfOYzpHTOImw==/com.example.pizza-eKV0PzPM05P87Ft7mJBefQ==/lib/arm64:/data/app/~~Rc4YHCiR6RKfOYzpHTOImw==/com.example.pizza-eKV0PzPM05P87Ft7mJBefQ==/base.apk!/lib/arm64-v8a, permitted_path=/data:/mnt/expand:/data/user/0/com.example.pizza
+2025-06-22 16:18:38.448 14323-14323 CompatChangeReporter    com.example.pizza                    D  Compat change id reported: 202956589; UID 10214; state: ENABLED
+2025-06-22 16:18:38.453 14323-14323 m.example.pizza         com.example.pizza                    I  AssetManager2(0xb4000075ab7983f8) locale list changing from [] to [en-US]
+2025-06-22 16:18:38.456 14323-14323 m.example.pizza         com.example.pizza                    I  AssetManager2(0xb4000075ab795838) locale list changing from [] to [en-US]
+2025-06-22 16:18:38.467 14323-14323 GraphicsEnvironment     com.example.pizza                    V  Currently set values for:
+2025-06-22 16:18:38.467 14323-14323 GraphicsEnvironment     com.example.pizza                    V    angle_gl_driver_selection_pkgs=[]
+2025-06-22 16:18:38.467 14323-14323 GraphicsEnvironment     com.example.pizza                    V    angle_gl_driver_selection_values=[]
+2025-06-22 16:18:38.468 14323-14323 GraphicsEnvironment     com.example.pizza                    V  com.example.pizza is not listed in per-application setting
+2025-06-22 16:18:38.468 14323-14323 GraphicsEnvironment     com.example.pizza                    V  ANGLE allowlist from config: 
+2025-06-22 16:18:38.468 14323-14323 GraphicsEnvironment     com.example.pizza                    V  com.example.pizza is not listed in ANGLE allowlist or settings, returning default
+2025-06-22 16:18:38.468 14323-14323 GraphicsEnvironment     com.example.pizza                    V  Neither updatable production driver nor prerelease driver is supported.
+2025-06-22 16:18:38.509 14323-14323 CompatChangeReporter    com.example.pizza                    D  Compat change id reported: 279646685; UID 10214; state: ENABLED
+2025-06-22 16:18:38.546 14323-14323 m.example.pizza         com.example.pizza                    I  AssetManager2(0xb4000075ab791ff8) locale list changing from [] to [en-US]
+2025-06-22 16:18:38.580 14323-14323 CompatChangeReporter    com.example.pizza                    D  Compat change id reported: 309578419; UID 10214; state: ENABLED
+2025-06-22 16:18:38.582 14323-14323 DesktopModeFlags        com.example.pizza                    D  Toggle override initialized to: OVERRIDE_UNSET
+2025-06-22 16:18:38.660 14323-14323 CompatChangeReporter    com.example.pizza                    D  Compat change id reported: 352594277; UID 10214; state: ENABLED
+2025-06-22 16:18:38.672 14323-14323 CompatChangeReporter    com.example.pizza                    D  Compat change id reported: 349153669; UID 10214; state: ENABLED
+2025-06-22 16:18:38.675 14323-14323 HWUI                    com.example.pizza                    W  Unknown dataspace 0
+2025-06-22 16:18:38.969 14323-14337 EGL_emulation           com.example.pizza                    I  Opening libGLESv1_CM_emulation.so
+2025-06-22 16:18:38.970 14323-14337 EGL_emulation           com.example.pizza                    I  Opening libGLESv2_emulation.so
+2025-06-22 16:18:38.980 14323-14337 HWUI                    com.example.pizza                    W  Failed to choose config with EGL_SWAP_BEHAVIOR_PRESERVED, retrying without...
+2025-06-22 16:18:38.980 14323-14337 HWUI                    com.example.pizza                    W  Failed to initialize 101010-2 format, error = EGL_SUCCESS
+2025-06-22 16:18:39.017 14323-14328 m.example.pizza         com.example.pizza                    I  Compiler allocated 5175KB to compile void android.view.ViewRootImpl.performTraversals()
+2025-06-22 16:18:39.060 14323-14323 InsetsController        com.example.pizza                    D  hide(ime(), fromIme=false)
+2025-06-22 16:18:39.060 14323-14323 ImeTracker              com.example.pizza                    I  com.example.pizza:afac9bde: onCancelled at PHASE_CLIENT_ALREADY_HIDDEN
+---------------------------- PROCESS ENDED (14323) for package com.example.pizza ----------------------------
+---------------------------- PROCESS STARTED (14388) for package com.example.pizza ----------------------------
+2025-06-22 16:18:43.586 14388-14388 nativeloader            com.example.pizza                    D  Configuring clns-7 for other apk /data/app/~~Rc4YHCiR6RKfOYzpHTOImw==/com.example.pizza-eKV0PzPM05P87Ft7mJBefQ==/base.apk. target_sdk_version=35, uses_libraries=, library_path=/data/app/~~Rc4YHCiR6RKfOYzpHTOImw==/com.example.pizza-eKV0PzPM05P87Ft7mJBefQ==/lib/arm64:/data/app/~~Rc4YHCiR6RKfOYzpHTOImw==/com.example.pizza-eKV0PzPM05P87Ft7mJBefQ==/base.apk!/lib/arm64-v8a, permitted_path=/data:/mnt/expand:/data/user/0/com.example.pizza
+2025-06-22 16:18:43.587 14388-14388 CompatChangeReporter    com.example.pizza                    D  Compat change id reported: 202956589; UID 10214; state: ENABLED
+2025-06-22 16:18:43.590 14388-14388 m.example.pizza         com.example.pizza                    I  AssetManager2(0xb4000075ab7983f8) locale list changing from [] to [en-US]
+2025-06-22 16:18:43.592 14388-14388 m.example.pizza         com.example.pizza                    I  AssetManager2(0xb4000075ab795838) locale list changing from [] to [en-US]
+2025-06-22 16:18:43.598 14388-14388 GraphicsEnvironment     com.example.pizza                    V  Currently set values for:
+2025-06-22 16:18:43.598 14388-14388 GraphicsEnvironment     com.example.pizza                    V    angle_gl_driver_selection_pkgs=[]
+2025-06-22 16:18:43.598 14388-14388 GraphicsEnvironment     com.example.pizza                    V    angle_gl_driver_selection_values=[]
+2025-06-22 16:18:43.598 14388-14388 GraphicsEnvironment     com.example.pizza                    V  com.example.pizza is not listed in per-application setting
+2025-06-22 16:18:43.598 14388-14388 GraphicsEnvironment     com.example.pizza                    V  ANGLE allowlist from config: 
+2025-06-22 16:18:43.598 14388-14388 GraphicsEnvironment     com.example.pizza                    V  com.example.pizza is not listed in ANGLE allowlist or settings, returning default
+2025-06-22 16:18:43.598 14388-14388 GraphicsEnvironment     com.example.pizza                    V  Neither updatable production driver nor prerelease driver is supported.
+2025-06-22 16:18:43.602 14388-14388 ActivityThread          com.example.pizza                    W  Application com.example.pizza is suspending. Debugger needs to resume to continue.
+2025-06-22 16:18:43.604 14388-14388 System.out              com.example.pizza                    I  Sending WAIT chunk
+2025-06-22 16:18:43.604 14388-14388 System.out              com.example.pizza                    I  Waiting for debugger first packet
+2025-06-22 16:18:43.656 14388-14392 nativeloader            com.example.pizza                    D  Load libjdwp.so using system ns (caller=<unknown>): ok
+2025-06-22 16:18:43.805 14388-14388 System.out              com.example.pizza                    I  Debug.suspendAllAndSentVmStart
+2025-06-22 16:18:44.476 14388-14388 System.out              com.example.pizza                    I  Debug.suspendAllAndSendVmStart, resumed
+2025-06-22 16:18:44.535 14388-14388 CompatChangeReporter    com.example.pizza                    D  Compat change id reported: 279646685; UID 10214; state: ENABLED
+2025-06-22 16:18:44.565 14388-14388 m.example.pizza         com.example.pizza                    I  AssetManager2(0xb4000075ab78b5b8) locale list changing from [] to [en-US]
+2025-06-22 16:18:44.644 14388-14388 CompatChangeReporter    com.example.pizza                    D  Compat change id reported: 309578419; UID 10214; state: ENABLED
+2025-06-22 16:18:44.646 14388-14388 DesktopModeFlags        com.example.pizza                    D  Toggle override initialized to: OVERRIDE_UNSET
+2025-06-22 16:18:44.747 14388-14388 CompatChangeReporter    com.example.pizza                    D  Compat change id reported: 352594277; UID 10214; state: ENABLED
+2025-06-22 16:18:44.760 14388-14388 CompatChangeReporter    com.example.pizza                    D  Compat change id reported: 349153669; UID 10214; state: ENABLED
+2025-06-22 16:18:44.762 14388-14388 HWUI                    com.example.pizza                    W  Unknown dataspace 0
+2025-06-22 16:18:45.299 14388-14393 m.example.pizza         com.example.pizza                    I  Compiler allocated 5175KB to compile void android.view.ViewRootImpl.performTraversals()
+2025-06-22 16:18:45.511 14388-14407 EGL_emulation           com.example.pizza                    I  Opening libGLESv1_CM_emulation.so
+2025-06-22 16:18:45.512 14388-14407 EGL_emulation           com.example.pizza                    I  Opening libGLESv2_emulation.so
+2025-06-22 16:18:45.567 14388-14407 HWUI                    com.example.pizza                    W  Failed to choose config with EGL_SWAP_BEHAVIOR_PRESERVED, retrying without...
+2025-06-22 16:18:45.567 14388-14407 HWUI                    com.example.pizza                    W  Failed to initialize 101010-2 format, error = EGL_SUCCESS
+2025-06-22 16:18:45.814 14388-14399 HWUI                    com.example.pizza                    I  Davey! duration=1022ms; Flags=1, FrameTimelineVsyncId=66608, IntendedVsync=36720168978756, Vsync=36720168978756, InputEventId=0, HandleInputStart=36720176744701, AnimationStart=36720176745701, PerformTraversalsStart=36720176746326, DrawStart=36721004459243, FrameDeadline=36720185645422, FrameStartTime=36720176741451, FrameInterval=16666666, WorkloadTarget=16666666, SyncQueued=36721015287243, SyncStart=36721015933952, IssueDrawCommandsStart=36721017499993, SwapBuffers=36721131899493, FrameCompleted=36721192285202, DequeueBufferDuration=582416, QueueBufferDuration=3144167, GpuCompleted=36721192285202, SwapBuffersCompleted=36721170827202, DisplayPresentTime=0, CommandSubmissionCompleted=36721131899493, 
+2025-06-22 16:18:45.843 14388-14388 Choreographer           com.example.pizza                    I  Skipped 58 frames!  The application may be doing too much work on its main thread.
+2025-06-22 16:18:45.904 14388-14388 InsetsController        com.example.pizza                    D  hide(ime(), fromIme=false)
+2025-06-22 16:18:45.904 14388-14388 ImeTracker              com.example.pizza                    I  com.example.pizza:8d3549bd: onCancelled at PHASE_CLIENT_ALREADY_HIDDEN
+2025-06-22 16:18:50.558 14388-14417 ProfileInstaller        com.example.pizza                    D  Installing profile for com.example.pizza
