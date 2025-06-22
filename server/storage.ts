@@ -269,7 +269,7 @@ export class MemStorage implements IStorage {
   }
 }
 
-import { PersistentStorage } from "./persistentStorage";
+import { FirebaseStorage } from "./firebaseStorage";
 
-// Using your existing persistent storage with all data intact
-export const storage = new PersistentStorage();
+// Using Firebase as primary database for users and all data
+export const storage = new FirebaseStorage();
