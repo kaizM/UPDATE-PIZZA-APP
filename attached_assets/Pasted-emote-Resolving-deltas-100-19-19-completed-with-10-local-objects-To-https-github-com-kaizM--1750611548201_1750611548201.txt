@@ -1,0 +1,46 @@
+emote: Resolving deltas: 100% (19/19), completed with 10 local objects.
+To https://github.com/kaizM/pizza-site
+   bb17510..dea99ca  main -> main
+branch 'main' set up to track 'origin/main'.
+kaizmaredia@kaizs-MacBook-Air pizza-site % cd /Users/kaizmaredia/Desktop/pizza-site
+kaizmaredia@kaizs-MacBook-Air pizza-site % git add .
+git commit -m "Initial commit: Complete pizza ordering system"
+git branch -M main
+git push -u origin main
+On branch main
+Your branch is ahead of 'origin/main' by 11 commits.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
+error: could not lock config file .git/config
+fatal: Branch is renamed, but update of config-file failed
+To https://github.com/kaizM/pizza-site
+ ! [rejected]        main -> main (fetch first)
+error: failed to push some refs to 'https://github.com/kaizM/pizza-site'
+hint: Updates were rejected because the remote contains work that you do
+hint: not have locally. This is usually caused by another repository pushing
+hint: to the same ref. You may want to first integrate the remote changes
+hint: (e.g., 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+kaizmaredia@kaizs-MacBook-Air pizza-site % rm -f .git/index.lock
+rm -f .git/refs/heads/main.lock
+kaizmaredia@kaizs-MacBook-Air pizza-site % git add .
+git commit -m "Initial commit: Complete pizza ordering system"
+git branch -M main
+git push -u origin main
+On branch main
+Your branch is ahead of 'origin/main' by 11 commits.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
+error: could not lock config file .git/config
+fatal: Branch is renamed, but update of config-file failed
+To https://github.com/kaizM/pizza-site
+ ! [rejected]        main -> main (fetch first)
+error: failed to push some refs to 'https://github.com/kaizM/pizza-site'
+hint: Updates were rejected because the remote contains work that you do
+hint: not have locally. This is usually caused by another repository pushing
+hint: to the same ref. You may want to first integrate the remote changes
+hint: (e.g., 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+kaizmaredia@kaizs-MacBook-Air pizza-site % 
