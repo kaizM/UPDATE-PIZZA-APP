@@ -116,9 +116,11 @@ The application is configured for multiple deployment scenarios:
 - Flexible storage backend selection
 
 ## Recent Changes
-- January 22, 2025: Successfully migrated project from Replit Agent to standard Replit environment
-- January 22, 2025: Verified all dependencies installed and server running on port 5000
-- January 22, 2025: User planning Android app development with API 26-27 recommendation provided
+- June 22, 2025: Successfully migrated project from Replit Agent to standard Replit environment
+- June 22, 2025: Verified all dependencies installed and server running on port 5000  
+- June 22, 2025: Fixed Android app configuration - converted from native Compose to WebView approach
+- June 22, 2025: Created working Android employee dashboard app that loads web interface
+- June 22, 2025: Added Android build scripts and comprehensive setup documentation
 
 ## Changelog
 - June 22, 2025: Initial setup
